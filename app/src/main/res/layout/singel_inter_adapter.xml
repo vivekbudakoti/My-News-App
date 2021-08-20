@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgInter"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="10dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/txtTitleInter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="SpaceX CEO Elon Musk Says Starship Orbital Stack to Be Ready for Flight in Few Weeks"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtDescInter"
+            android:textSize="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="SpaceX founder Elon Musk said the first orbital stack of the Starship rocket should be ready for flight in the coming weeks, taking the unorthodox billionaire a step closer to his dream of orbital and then interplanetary travel."/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txtAuthorInter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Reuters"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:id="@+id/txtPublishedInter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="2021-08-16T04:31:44Z"
+                android:textColor="@color/black"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
