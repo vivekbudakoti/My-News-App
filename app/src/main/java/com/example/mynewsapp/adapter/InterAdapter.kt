@@ -35,6 +35,7 @@ class InterAdapter(val context: Context, private val itemList : ArrayList<News>)
         holder.textTitle.text = news.title
         holder.textDesc.text = news.description
         holder.textPubl.text = news.publishedAt
+
        // Picasso.get().load(news.urlToImage).error(R.drawable.ic_launcher_background).into(holder.imgCover)
     }
 
