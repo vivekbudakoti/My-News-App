@@ -36,7 +36,7 @@ class InterAdapter(val context: Context, private val itemList : ArrayList<News>)
         holder.textDesc.text = news.description
         holder.textPubl.text = news.publishedAt
 
-       // Picasso.get().load(news.urlToImage).error(R.drawable.ic_launcher_background).into(holder.imgCover)
+        Picasso.get().load(news.urlToImage).error(R.drawable.ic_launcher_background).into(holder.imgCover)
     }
 
     override fun getItemCount(): Int {
