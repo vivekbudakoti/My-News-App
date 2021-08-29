@@ -43,18 +43,15 @@ class MainActivity : AppCompatActivity() {
 
         //Volley starts here
         val queue = Volley.newRequestQueue(this)
-        val url = "https://newsapi.org/v2/top-headlines"
+        val url = "https://api.nytimes.com/svc/topstories/v2/world.json?api-key=bktTaXoH2c9GANLGV1HhmPm2GbAb8VG3"
 
-        var params= JSONObject()
-        params.put("sources","bbc-news")
-        params.put("apiKey","a10cf1ba4c6f484d8d15160aeb11e273")
 
         if(ConnectionManager().checkConnectivity(this)){
             val jasonObjectRequest =
                 object : JsonObjectRequest(
                     Method.GET,
                     url,
-                    params,
+                    null,
                     com.android.volley.Response.Listener {
 
                         progressLayout.visibility = View.GONE
@@ -65,18 +62,24 @@ class MainActivity : AppCompatActivity() {
 
                           val success = it.getString("status")
 
-                          if(success=="ok"){
-                              val data = it.getJSONArray("articles")
+                          if(success=="OK"){
+                              val data = it.getJSONArray("results")
                               for(i in 0 until data.length()){
-                                  val newsJasonObject = data.getJSONObject(i)
-                                  val newsObject = News(
-                                      newsJasonObject.getString("author"),
-                                      newsJasonObject.getString("title"),
-                                      newsJasonObject.getString("Description"),
-                                      newsJasonObject.getString("publishedAt"),
-                                      newsJasonObject.getString("urlToImage"),
-                                  )
-                                  newsInfoList.add(newsObject)
+                                  val newsObject = data.getJSONObject(i)
+                                  val titel = newsObject.getString("title")
+                                  val abstract = newsObject.getString("abstract")
+                                  val section = newsObject.getString("section").capitalize()
+                                  val url = newsObject.getString("url")
+                                  val updateDate = newsObject.getString("updated_date").split("T")
+                                  val date = updateDate[0]
+                                  val time = updateDate[1]
+                                  val multimedia = newsObject.getJSONArray("multimedia")
+                                  val multimediaObjetc = multimedia.getJSONObject(0)
+                                  val image = multimediaObjetc.getString("url")
+
+                                  val news = News(time,titel,abstract, date,image,url)
+                                  newsInfoList.add(news)
+
                               }
                           }
                           else{
@@ -100,12 +103,12 @@ class MainActivity : AppCompatActivity() {
                         }
                     }) {
 
-                    override fun getHeaders(): MutableMap<String, String> {
-                        val header = HashMap<String, String>()
-                        //header["Content-type"] = "application/json"
-                      //  header["X-Api-Key"] = "a10cf1ba4c6f484d8d15160aeb11e273"
-                        return super.getHeaders()
-                }
+//                    override fun getHeaders(): MutableMap<String, String> {
+//                        val header = HashMap<String, String>()
+//                        //header["Content-type"] = "application/json"
+//                      //  header["X-Api-Key"] = "a10cf1ba4c6f484d8d15160aeb11e273"
+//                        return super.getHeaders()
+               // }
 
 
         }

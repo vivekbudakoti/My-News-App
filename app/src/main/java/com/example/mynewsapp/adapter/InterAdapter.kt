@@ -1,11 +1,14 @@
 package com.example.mynewsapp.Adapter
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynewsapp.R
 import com.example.mynewsapp.model.News
@@ -21,6 +24,7 @@ class InterAdapter(val context: Context, private val itemList : ArrayList<News>)
         val textDesc : TextView = view.findViewById(R.id.txtDescInter)
         val textPubl : TextView = view.findViewById(R.id.txtPublishedInter)
         val imgCover : ImageView = view.findViewById(R.id.imgInter)
+        val Linear : LinearLayout = view.findViewById(R.id.llClick)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder {
@@ -35,8 +39,15 @@ class InterAdapter(val context: Context, private val itemList : ArrayList<News>)
         holder.textTitle.text = news.title
         holder.textDesc.text = news.description
         holder.textPubl.text = news.publishedAt
+        holder.Linear.setOnClickListener {
+            val uris = Uri.parse(news.link)
+            val intents = Intent(Intent.ACTION_VIEW, uris)
+            context.startActivity(intents)
+        }
 
         Picasso.get().load(news.urlToImage).error(R.drawable.ic_launcher_background).into(holder.imgCover)
+
+
     }
 
     override fun getItemCount(): Int {
